@@ -1,3 +1,3 @@
 # java-biblioteca
 
-Trabalho em desenvolvimento na disciplina Java avançado na pós graduação em engenharia de software.
+Trabalho em desenvolvimento na pós graduação na disciplina Java Avançado com o framework SpringBoot.
