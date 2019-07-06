@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lista de livros</title>
+</head>
+<body>
+<tr th:each="livro : ${listaLivros}">
+    <td th:text="${livro.id}">1</td>
+    <td><a href="#" th:href="@{'/livros/'+${livro.id}}" th:text="${livro.nome}"> Título </a></td>
+</tr>
+</body>
+</html>
