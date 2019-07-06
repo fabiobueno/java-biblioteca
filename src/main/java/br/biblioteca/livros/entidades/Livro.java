@@ -14,7 +14,7 @@ public class Livro {
     private Integer quantidadePaginas;
 
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "autor_id")
     private Autor autor;
 

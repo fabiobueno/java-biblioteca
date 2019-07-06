@@ -5,10 +5,10 @@
     <title>Autores</title>
 </head>
 <body>
-<form method="post" action="/autores/gravar">
-    Nome: <input type="text" name="nome">
+<form method="post" action="/autores/gravar" th:object="${autor}">
+    <input type="hidden"  th:field="*{id}" />
+    Nome: <input type="text" name="nome"  th:field="*{nome}" >
     <input type="submit">
 </form>
-
 </body>
 </html>
