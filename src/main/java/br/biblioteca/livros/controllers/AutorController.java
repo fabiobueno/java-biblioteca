@@ -27,7 +27,7 @@ public class AutorController {
 
     @GetMapping("/novo")
     public ModelAndView newAuthor(@ModelAttribute Autor autor) {
-        return new ModelAndView( "/autores/form");
+        return new ModelAndView( "autores/form");
     }
 
     @GetMapping("/alterar/{id}")
@@ -42,7 +42,7 @@ public class AutorController {
     public ModelAndView create(@Valid Autor autor, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return new ModelAndView( "/autores/form");
+            return new ModelAndView( "autores/form");
         }
 
         autoresService.gravaAutor(autor);
