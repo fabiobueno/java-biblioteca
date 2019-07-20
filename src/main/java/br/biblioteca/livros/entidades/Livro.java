@@ -1,6 +1,8 @@
 package br.biblioteca.livros.entidades;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.biblioteca.livros.entidades.Autor;
@@ -12,10 +14,11 @@ public class Livro {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+    @NotBlank
     private String nome;
 
     @NotNull
+    @Min(1)
     private Integer quantidadePaginas;
 
     @ManyToOne

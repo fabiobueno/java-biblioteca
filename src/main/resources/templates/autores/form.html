@@ -8,6 +8,7 @@
 <form method="post" action="/autores/gravar" th:object="${autor}">
     <input type="hidden"  th:field="*{id}" />
     Nome: <input type="text" name="nome"  th:field="*{nome}" >
+    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Error</span><br/>
     <input type="submit">
 </form>
 </body>

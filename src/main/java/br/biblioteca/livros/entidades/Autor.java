@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Autor {
@@ -17,6 +18,7 @@ public class Autor {
     @GeneratedValue
     private Long id;
 
+    @NotBlank
     private String nome;
 
     @OneToMany(mappedBy = "autor")

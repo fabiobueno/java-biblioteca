@@ -5,8 +5,11 @@ import br.biblioteca.livros.repository.AutorRepository;
 import br.biblioteca.livros.services.AutoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/autores")
@@ -36,7 +39,12 @@ public class AutorController {
     }
 
     @PostMapping(value = "/gravar")
-    public ModelAndView create(Autor autor) {
+    public ModelAndView create(@Valid Autor autor, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView( "/autores/form");
+        }
+
         autoresService.gravaAutor(autor);
         return new ModelAndView("redirect:/autores/list");
     }
