@@ -22,7 +22,7 @@ public class AutorController {
     public ModelAndView list() {
         Iterable<Autor> autores = autoresService.listaAutores();
 
-        return new ModelAndView( "/autores/list" , "listaAutores" , autores );
+        return new ModelAndView( "autores/list" , "listaAutores" , autores );
     }
 
     @GetMapping("/novo")
