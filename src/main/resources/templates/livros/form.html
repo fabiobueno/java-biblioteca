@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
 <head>
     <meta charset="UTF-8" />
     <title>Livros</title>
 </head>
 <body>
-<form method="post" action="/livros/gravar" th:object="${livro}">
-    <input type="hidden"  th:field="*{id}" />
+<h1 layout:fragment="header">
+    <a th:href="@{/livros/list}"  class="btn btn-sm btn-info"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    Cadastrar Livro
+</h1>
+<div layout:fragment="content" class="container">
+    <form method="post" action="/livros/gravar" th:object="${livro}">
+        <input type="hidden"  th:field="*{id}" />
 
-    Nome: <input type="text" name="nome"  th:field="*{nome}" >
-    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Error</span><br/>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome"  th:field="*{nome}" >
+            <small  class="form-text text-muted" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Error</small>
+        </div>
 
-    Quantidade Páginas: <input type="text" name="quantidadePaginas" th:field="*{quantidadePaginas}">
-    <span th:if="${#fields.hasErrors('quantidadePaginas')}" th:errors="*{quantidadePaginas}">Error</span>
+        <div class="form-group">
+            <label for="nome">Quantidade Páginas</label>
+            <input type="text" class="form-control" name="quantidadePaginas" id="quantidadePaginas"  th:field="*{quantidadePaginas}" >
+            <small  class="form-text text-muted" th:if="${#fields.hasErrors('quantidadePaginas')}" th:errors="*{quantidadePaginas}">Error</small>
+        </div>
 
-    <select th:object="${livro}" th:field="*{autor}">
-        <option value="">Selecione o Autor</option>
-        <option th:each="autor : ${autores}" th:value="${autor.id}" th:utext="${autor.nome} " selected="selected"></option>
-    </select>
-
-    <input type="submit">
-</form>
+        <div class="form-group">
+            <label>Autor</label>
+            <select class="form-control" th:object="${livro}" th:field="*{autor}">
+                <option value="">Selecione o Autor</option>
+                <option th:each="autor : ${autores}" th:value="${autor.id}" th:utext="${autor.nome} " selected="selected"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Enviar</button>
+    </form>
+</div>
 
 </body>
 </html>
