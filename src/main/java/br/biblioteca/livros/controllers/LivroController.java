@@ -6,8 +6,11 @@ import br.biblioteca.livros.services.AutoresService;
 import br.biblioteca.livros.services.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping ("/livros")
@@ -23,7 +26,7 @@ public class LivroController {
     public ModelAndView list() {
         Iterable<Livro> livros = livroService.listaLivros();
 
-        return new ModelAndView( "/livros/list" , "listaLivros" , livros );
+        return new ModelAndView( "livros/list" , "listaLivros" , livros );
     }
 
     @GetMapping("/novo")
@@ -35,7 +38,15 @@ public class LivroController {
     }
 
     @PostMapping(value = "/gravar")
-    public ModelAndView create(Livro livro) {
+    public ModelAndView create(@Valid Livro livro, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("livros/form");
+            Iterable<Autor> autores = autorService.listaAutores();
+            modelAndView.addObject("autores", autores);
+            return modelAndView;
+        }
+
         livroService.gravaLivro(livro);
         return new ModelAndView("redirect:/livros/list");
     }

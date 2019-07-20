@@ -1,6 +1,7 @@
 package br.biblioteca.livros.entidades;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import br.biblioteca.livros.entidades.Autor;
 
@@ -10,9 +11,12 @@ public class Livro {
     @Id
     @GeneratedValue
     private Long id;
-    private String nome;
-    private Integer quantidadePaginas;
 
+    @NotNull
+    private String nome;
+
+    @NotNull
+    private Integer quantidadePaginas;
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
